@@ -3,132 +3,461 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>พื้นฐานเซ็นเซอร์ในงานอุตสาหกรรม</title>
+  <title>ความรู้เบื้องต้นเกี่ยวกับเซ็นเซอร์และ KY-025</title>
   <style>
     :root {
-      --bg: #f4f7fb;
-      --card: #ffffff;
-      --primary: #1e3a8a;
+      --bg: #eef6ff;
+      --panel: #ffffff;
+      --primary: #123d8c;
       --secondary: #2563eb;
       --accent: #dbeafe;
+      --soft: #f8fbff;
       --text: #1f2937;
-      --muted: #6b7280;
-      --line: #dfe7f5;
+      --muted: #5f6b7a;
+      --border: #dfeaf7;
+      --success: #1e9b5a;
+      --warning: #f59e0b;
+      --shadow: 0 18px 40px rgba(18, 61, 140, 0.12);
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       margin: 0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       font-family: "Segoe UI", Tahoma, sans-serif;
-      background: linear-gradient(135deg, #eef4ff 0%, #f8fafc 100%);
+      background: linear-gradient(180deg, #edf5ff 0%, #f7fbff 100%);
       color: var(--text);
-      padding: 24px;
+      line-height: 1.7;
     }
 
     .container {
-      width: min(720px, 100%);
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      box-shadow: 0 16px 40px rgba(30, 58, 138, 0.08);
+      width: min(1100px, calc(100% - 32px));
+      margin: 32px auto;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
       overflow: hidden;
     }
 
-    .header {
+    .hero {
       background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-      padding: 32px 28px;
-      text-align: center;
+      color: #fff;
+      padding: 48px 40px;
     }
 
-    .header h1 {
-      margin: 0;
-      font-size: clamp(1.8rem, 3vw, 2.7rem);
-      line-height: 1.4;
+    .eyebrow {
+      display: inline-block;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      margin-bottom: 16px;
       font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      margin: 0 0 14px;
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      line-height: 1.25;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 800px;
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.92);
     }
 
     .content {
-      padding: 32px 28px 24px;
+      padding: 36px 40px 24px;
     }
 
-    .info {
+    .section {
+      margin-bottom: 34px;
+    }
+
+    .section h2 {
+      margin: 0 0 16px;
+      font-size: clamp(1.35rem, 2vw, 2rem);
+      color: var(--primary);
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 10px;
+    }
+
+    .lead {
+      margin: 0 0 22px;
+      font-size: 1.06rem;
+      color: var(--text);
+    }
+
+    .grid {
       display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 18px;
+      margin-top: 18px;
+    }
+
+    .card {
+      background: var(--soft);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px 20px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      color: var(--primary);
+      font-size: 1.15rem;
+    }
+
+    .card ul, .card ol {
       margin: 0;
-      padding: 0;
-      list-style: none;
+      padding-left: 22px;
+      color: var(--text);
     }
 
-    .info li {
-      display: flex;
-      align-items: center;
-      gap: 12px;
+    .card li + li {
+      margin-top: 8px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: #fff;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 640px;
+    }
+
+    th, td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
       background: var(--accent);
-      border: 1px solid #cfe0ff;
-      border-radius: 12px;
-      padding: 16px 18px;
-      font-size: 1.08rem;
-      font-weight: 600;
+      color: var(--primary);
+      font-weight: 700;
     }
 
-    .badge {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: var(--primary);
-      color: white;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.9rem;
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .specs {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .spec {
+      background: linear-gradient(180deg, #fff 0%, #f5f9ff 100%);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px 16px;
+    }
+
+    .spec strong {
+      display: block;
+      color: var(--primary);
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    .code-box {
+      background: #0f172a;
+      color: #e2e8f0;
+      border-radius: 16px;
+      padding: 18px 20px;
+      overflow-x: auto;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .status {
+      display: inline-block;
+      background: rgba(30, 155, 90, 0.1);
+      color: var(--success);
+      border: 1px solid rgba(30, 155, 90, 0.2);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.8rem;
       font-weight: 700;
-      flex-shrink: 0;
+      margin-top: 12px;
     }
 
     .footer {
-      padding: 0 28px 28px;
+      background: #f1f6ff;
+      border-top: 1px solid var(--border);
+      padding: 24px 40px 36px;
       color: var(--muted);
       text-align: center;
       font-size: 0.98rem;
     }
 
-    @media (max-width: 520px) {
-      .header, .content, .footer {
-        padding-left: 18px;
-        padding-right: 18px;
+    @media (max-width: 760px) {
+      .grid,
+      .specs {
+        grid-template-columns: 1fr;
       }
 
-      .info li {
-        font-size: 1rem;
-        align-items: flex-start;
+      .hero,
+      .content,
+      .footer {
+        padding-left: 22px;
+        padding-right: 22px;
       }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="header">
-      <h1>20105-2022 พื้นฐานเซ็นเซอร์ในงานอุตสาหกรรม</h1>
-    </div>
+    <header class="hero">
+      <div class="eyebrow">Sensors Fundamentals</div>
+      <h1>ความรู้เบื้องต้นเกี่ยวกับเซ็นเซอร์ และ KY-025 Magnetic Reed Switch Sensor</h1>
+      <p>
+        เซ็นเซอร์เป็นอุปกรณ์ที่ตรวจจับการเปลี่ยนแปลงของสภาพแวดล้อม แล้วแปลงข้อมูลให้เป็นสัญญาณไฟฟ้า
+        เพื่อให้ไมโครคอนโทรลเลอร์ เช่น Arduino ประมวลผลและทำงานต่อไปได้
+      </p>
+    </header>
 
-    <div class="content">
-      <ul class="info">
-        <li><span class="badge">01</span> ชื่อโครงงาน: KY-025</li>
-        <li><span class="badge">02</span> จัดทำโดย: นาย ทีรธร กาญจนวิวิญ</li>
-        <li><span class="badge">03</span> แผนกวิชาช่างเทคนิคคอมพิวเตอร์</li>
-        <li><span class="badge">04</span> ระดับ: ปวช</li>
-      </ul>
-    </div>
+    <main class="content">
+      <section class="section">
+        <h2>ความรู้เบื้องต้นเกี่ยวกับเซ็นเซอร์</h2>
+        <p class="lead">
+          Sensor หรือเซ็นเซอร์ ทำหน้าที่เป็นประสาทสัมผัสของระบบอิเล็กทรอนิกส์
+          โดยจะตรวจจับสิ่งแวดล้อม เช่น แสง อุณหภูมิ ความชื้น ระยะทาง การเคลื่อนไหว สนามแม่เหล็ก
+          หรือสถานะเปิด/ปิดของอุปกรณ์ต่าง ๆ แล้วส่งสัญญาณออกไปยังไมโครคอนโทรลเลอร์เพื่อประมวลผล
+        </p>
 
-    <div class="footer">
-      งานวิจัยและโครงงานด้านเซ็นเซอร์อุตสาหกรรมเบื้องต้น
-    </div>
+        <div class="grid">
+          <div class="card">
+            <h3>หน้าที่ของ Sensor</h3>
+            <ol>
+              <li>ตรวจจับค่าจากสภาพแวดล้อม</li>
+              <li>ส่งสัญญาณไฟฟ้าออกมา</li>
+              <li>ไมโครคอนโทรลเลอร์อ่านค่า</li>
+              <li>ประมวลผลและตัดสินใจ</li>
+              <li>สั่งงานอุปกรณ์ต่อไป</li>
+            </ol>
+          </div>
+
+          <div class="card">
+            <h3>ตัวอย่างการใช้งาน</h3>
+            <ul>
+              <li>ตรวจจับว่าประตูเปิดหรือปิด</li>
+              <li>ตรวจจับว่ามีแม่เหล็กเข้ามาใกล้หรือไม่</li>
+              <li>ตรวจจับความสว่างหรือความชื้น</li>
+              <li>ใช้เป็นตัวรับข้อมูลสำหรับระบบอัตโนมัติ</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>ประเภทของสัญญาณจาก Sensor</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Digital Sensor</h3>
+            <p>ให้สัญญาณแบบ 2 สถานะ คือ HIGH หรือ LOW เหมาะสำหรับงานที่ต้องการรู้เพียงว่ามีหรือไม่มีเหตุการณ์เกิดขึ้น</p>
+            <ul>
+              <li>กดปุ่ม</li>
+              <li>ประตูเปิด/ปิด</li>
+              <li>ตรวจจับแม่เหล็ก</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Analog Sensor</h3>
+            <p>ให้สัญญาณแบบต่อเนื่องตามแรงดันที่เปลี่ยนแปลง โดย Arduino UNO อ่านได้เป็นค่า 0 ถึง 1023</p>
+            <ul>
+              <li>ความสว่างจาก LDR</li>
+              <li>ความชื้นในดิน</li>
+              <li>แรงดันจาก Sensor หลายชนิด</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>ค่าที่ควรรู้ก่อนใช้งาน Sensor</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>รายการ</th>
+                <th>ความหมาย</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Operating Voltage</td>
+                <td>แรงดันไฟเลี้ยงที่ Sensor รองรับ เช่น 3.3V หรือ 5V</td>
+              </tr>
+              <tr>
+                <td>Output Type</td>
+                <td>ชนิดสัญญาณ เช่น Digital, Analog, I2C, SPI หรือ UART</td>
+              </tr>
+              <tr>
+                <td>Pinout</td>
+                <td>ตำแหน่งและหน้าที่ของขาแต่ละขา</td>
+              </tr>
+              <tr>
+                <td>Detection Range</td>
+                <td>ระยะหรือช่วงค่าที่ Sensor ตรวจจับได้</td>
+              </tr>
+              <tr>
+                <td>Response Time</td>
+                <td>เวลาที่ Sensor ใช้ตอบสนองต่อการเปลี่ยนแปลง</td>
+              </tr>
+              <tr>
+                <td>Calibration</td>
+                <td>การปรับค่าเพื่อให้ Sensor อ่านค่าได้เหมาะสม</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>KY-025 Magnetic Reed Switch Sensor Module</h2>
+        <p class="lead">
+          KY-025 เป็นโมดูลสำหรับตรวจจับสนามแม่เหล็กแบบ Reed Switch เหมาะสำหรับตรวจจับการเปิด/ปิดประตู
+          หน้าต่าง หรือตำแหน่งชิ้นงานที่มีแม่เหล็กเข้าใกล้
+        </p>
+
+        <div class="specs">
+          <div class="spec">
+            <strong>ชื่อโมดูล</strong>
+            KY-025 Magnetic Reed Switch Sensor
+          </div>
+          <div class="spec">
+            <strong>แรงดันใช้งาน</strong>
+            3.3V - 5V
+          </div>
+          <div class="spec">
+            <strong>เอาต์พุต</strong>
+            Digital Output และ Analog Output
+          </div>
+        </div>
+
+        <div class="table-wrap" style="margin-top: 18px;">
+          <table>
+            <thead>
+              <tr>
+                <th>ขา</th>
+                <th>หน้าที่</th>
+                <th>การต่อกับ Arduino UNO</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>G / GND</td>
+                <td>Ground</td>
+                <td>GND</td>
+              </tr>
+              <tr>
+                <td>+ / VCC</td>
+                <td>ไฟเลี้ยงโมดูล</td>
+                <td>5V</td>
+              </tr>
+              <tr>
+                <td>D0 / DO</td>
+                <td>Digital Output</td>
+                <td>Digital เช่น D3</td>
+              </tr>
+              <tr>
+                <td>A0 / AO</td>
+                <td>Analog Output</td>
+                <td>Analog เช่น A0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card" style="margin-top: 22px;">
+          <h3>หลักการทำงาน</h3>
+          <p>
+            Reed Switch ประกอบด้วยแผ่นโลหะ 2 แผ่นอยู่ภายในหลอดแก้ว เมื่อมีแม่เหล็กเข้าใกล้
+            จะทำให้แผ่นโลหะแตะกันและปิดวงจร ทำให้โมดูลส่งสัญญาณออกทาง D0 หรือ A0
+            โดยวงจร LM393 จะเปรียบเทียบกับค่า Threshold ที่ตั้งด้วย Potentiometer
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>ตัวอย่างโค้ด Arduino</h2>
+        <div class="code-box">
+          <pre><code>const int digitalPin = 3;
+const int analogPin = A0;
+const int ledPin = 13;
+
+void setup() {
+  pinMode(digitalPin, INPUT);
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int digitalValue = digitalRead(digitalPin);
+  int analogValue = analogRead(analogPin);
+
+  digitalWrite(ledPin, digitalValue);
+
+  Serial.print("Digital: ");
+  Serial.print(digitalValue);
+  Serial.print(" | Analog: ");
+  Serial.println(analogValue);
+
+  delay(200);
+}</code></pre>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>การใช้งานที่เหมาะสม</h2>
+        <div class="grid">
+          <div class="card">
+            <ul>
+              <li>ตรวจจับการเปิด/ปิดประตูหรือหน้าต่าง</li>
+              <li>ทำระบบแจ้งเตือนด้วยแม่เหล็ก</li>
+              <li>ตรวจจับตำแหน่งชิ้นส่วนที่เคลื่อนที่</li>
+              <li>ใช้เป็น Limit Switch แบบไม่สัมผัส</li>
+            </ul>
+          </div>
+          <div class="card">
+            <ul>
+              <li>ตรวจจับชิ้นงานเมื่อมีแม่เหล็กอยู่ใกล้</li>
+              <li>ใช้งานร่วมกับ Arduino, ESP32 หรือ Raspberry Pi</li>
+              <li>มีทั้ง Digital Output และ Analog Output</li>
+              <li>เหมาะสำหรับงานตรวจจับสถานะเปิด/ปิดแบบง่าย</li>
+            </ul>
+          </div>
+        </div>
+        <span class="status">สรุป: KY-025 เป็น Sensor ตรวจจับแม่เหล็กที่ใช้งานง่ายและเหมาะกับงานอัตโนมัติแบบไม่สัมผัส</span>
+      </section>
+    </main>
+
+    <footer class="footer">
+      จัดทำโดย นาย ทีรธร กาญจนวิวิญ | แผนกวิชาช่างเทคนิคคอมพิวเตอร์ | ระดับ ปวช
+    </footer>
   </div>
 </body>
 </html>
