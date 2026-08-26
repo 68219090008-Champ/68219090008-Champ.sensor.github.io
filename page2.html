@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>หน้า 2 - ทดสอบ Sensor KY-025</title>
+  <style>
+    :root {
+      --bg: #f4f8ff;
+      --panel: #ffffff;
+      --primary: #123d8c;
+      --secondary: #3b82f6;
+      --accent: #dfeeff;
+      --soft: #f7faff;
+      --text: #1f2937;
+      --muted: #5b6472;
+      --border: #dfe9f6;
+      --success: #1f9d61;
+      --warning: #f59e0b;
+      --shadow: 0 18px 36px rgba(13, 56, 128, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background: linear-gradient(180deg, #edf5ff 0%, #f9fbff 100%);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .page {
+      width: min(1100px, calc(100% - 32px));
+      margin: 28px auto 40px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .topbar {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 18px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .topbar h1 {
+      margin: 0;
+      font-size: clamp(1.3rem, 2vw, 2rem);
+    }
+
+    .nav a {
+      color: white;
+      text-decoration: none;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .container {
+      padding: 36px 28px 24px;
+    }
+
+    .section {
+      margin-bottom: 30px;
+    }
+
+    .section h2 {
+      margin: 0 0 14px;
+      font-size: clamp(1.35rem, 2vw, 1.9rem);
+      color: var(--primary);
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 8px;
+    }
+
+    .lead {
+      margin: 0 0 18px;
+      color: var(--text);
+      font-size: 1.04rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--soft);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px 18px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+
+    .card ul, .card ol {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .card li + li {
+      margin-top: 8px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: white;
+    }
+
+    table {
+      width: 100%;
+      min-width: 660px;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 13px 14px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: var(--accent);
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .image-box {
+      background: linear-gradient(180deg, #fdfefe 0%, #f2f8ff 100%);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    .image-box img {
+      max-width: 220px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border-radius: 12px;
+    }
+
+    .code-block {
+      background: #0f172a;
+      color: #e2e8f0;
+      border-radius: 16px;
+      padding: 18px 20px;
+      overflow-x: auto;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .note {
+      background: #ecfdf5;
+      border: 1px solid #b7ebc8;
+      color: #14532d;
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-top: 16px;
+      font-weight: 600;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(37, 99, 235, 0.07);
+      color: var(--primary);
+      border: 1px solid rgba(37, 99, 235, 0.15);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-top: 10px;
+    }
+
+    .footer {
+      background: #f2f7ff;
+      border-top: 1px solid var(--border);
+      padding: 22px 28px 30px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    @media (max-width: 760px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .container,
+      .footer {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <h1>งานที่ 1: ทดสอบ Sensor KY-025</h1>
+      <div class="nav">
+        <a href="index.html">← กลับหน้าแรก</a>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="section">
+        <h2>วัตถุประสงค์</h2>
+        <p class="lead">
+          ออกแบบการทดสอบ Sensor KY-025 Magnetic Reed Switch Module ร่วมกับ Arduino UNO
+          เพื่ออ่านค่าสถานะการตรวจจับแม่เหล็ก แล้วแสดงผลผ่าน Serial Monitor
+          โดยใช้ทั้งสัญญาณแบบ Digital และ Analog
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>อุปกรณ์ที่ใช้</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>อุปกรณ์</th>
+                <th>จำนวน</th>
+                <th>หมายเหตุ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Arduino UNO R3</td>
+                <td>1 บอร์ด</td>
+                <td>ใช้เป็นไมโครคอนโทรลเลอร์หลัก</td>
+              </tr>
+              <tr>
+                <td>KY-025 Magnetic Reed Switch Sensor</td>
+                <td>1 ตัว</td>
+                <td>Sensor ตรวจจับแม่เหล็ก</td>
+              </tr>
+              <tr>
+                <td>แม่เหล็ก</td>
+                <td>1 ชิ้น</td>
+                <td>ใช้ทดสอบการตรวจจับ</td>
+              </tr>
+              <tr>
+                <td>สาย Jumper</td>
+                <td>4 เส้น</td>
+                <td>ใช้ต่อวงจร</td>
+              </tr>
+              <tr>
+                <td>คอมพิวเตอร์</td>
+                <td>1 เครื่อง</td>
+                <td>ใช้เปิด Serial Monitor</td>
+              </tr>
+              <tr>
+                <td>สาย USB</td>
+                <td>1 เส้น</td>
+                <td>ใช้อัปโหลดโปรแกรมและจ่ายไฟ</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>ภาพประกอบ Sensor</h2>
+        <div class="image-box">
+          <img src="https://sensorkit.joy-it.net/files/files/sensors/KY-025/KY-025.png" alt="KY-025 Magnetic Reed Sensor" />
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>หลักการทดสอบ</h2>
+        <p class="lead">
+          KY-025 ใช้ Reed Switch ตรวจจับสนามแม่เหล็ก เมื่อมีแม่เหล็กเข้าใกล้ หน้าสัมผัสภายใน Reed Switch
+          จะเปลี่ยนสถานะ ทำให้ค่าที่อ่านจากขา D0 เปลี่ยนเป็น HIGH หรือ LOW
+        </p>
+        <div class="card">
+          <h3>ข้อมูลสำคัญ</h3>
+          <ul>
+            <li>ขา D0 ใช้สำหรับอ่านสัญญาณ Digital</li>
+            <li>ขา A0 ใช้สำหรับอ่านค่า Analog ผ่าน Arduino</li>
+            <li>ค่า Analog จะอยู่ในช่วง 0 ถึง 1023</li>
+            <li>ค่า Digital จะเปลี่ยนเมื่อมีแม่เหล็กเข้าใกล้หรือออกห่าง</li>
+          </ul>
+        </div>
+        <span class="badge">หมายเหตุ: ค่า Analog ไม่ใช่ค่าความแรงแม่เหล็กแบบละเอียดเสมอไป</span>
+      </section>
+
+      <section class="section">
+        <h2>การต่อวงจร</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ขา KY-025</th>
+                <th>ต่อกับ Arduino UNO</th>
+                <th>หน้าที่</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>+ หรือ VCC</td>
+                <td>5V</td>
+                <td>จ่ายไฟให้ Sensor</td>
+              </tr>
+              <tr>
+                <td>G หรือ GND</td>
+                <td>GND</td>
+                <td>กราวด์ร่วม</td>
+              </tr>
+              <tr>
+                <td>D0 หรือ DO</td>
+                <td>D3</td>
+                <td>อ่านสัญญาณ Digital</td>
+              </tr>
+              <tr>
+                <td>A0 หรือ AO</td>
+                <td>A0</td>
+                <td>อ่านสัญญาณ Analog</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>ขั้นตอนการทดสอบ</h2>
+        <div class="grid">
+          <div class="card">
+            <ol>
+              <li>ต่อสาย KY-025 เข้ากับ Arduino UNO ตามตาราง</li>
+              <li>เชื่อมต่อ Arduino UNO กับคอมพิวเตอร์</li>
+              <li>เปิด Arduino IDE หรือ PlatformIO</li>
+              <li>อัปโหลดโค้ดทดสอบลงบอร์ด</li>
+              <li>เปิด Serial Monitor และตั้ง Baud Rate เป็น 9600</li>
+            </ol>
+          </div>
+
+          <div class="card">
+            <ol start="6">
+              <li>นำแม่เหล็กเข้าใกล้ Sensor แล้วสังเกตค่า</li>
+              <li>นำแม่เหล็กออกห่างแล้วสังเกตการเปลี่ยนแปลง</li>
+              <li>ถ้าค่า Digital ไม่เปลี่ยน ให้ปรับ Potentiometer</li>
+              <li>บันทึกผลการทดลองและเปรียบเทียบค่า</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>โค้ดทดสอบสำหรับ Serial Monitor</h2>
+        <div class="code-block">
+          <pre><code>#include &lt;Arduino.h&gt;
+
+const int digitalPin = 3;
+const int analogPin = A0;
+const int ledPin = LED_BUILTIN;
+
+void setup() {
+  pinMode(digitalPin, INPUT);
+  pinMode(ledPin, OUTPUT);
+
+  Serial.begin(9600);
+  Serial.println("KY-025 Sensor Test");
+  Serial.println("Move a magnet near the sensor.");
+}
+
+void loop() {
+  int digitalValue = digitalRead(digitalPin);
+  int analogValue = analogRead(analogPin);
+
+  digitalWrite(ledPin, digitalValue);
+
+  Serial.print("Digital = ");
+  Serial.print(digitalValue);
+  Serial.print(" | Analog = ");
+  Serial.print(analogValue);
+  Serial.print(" | Status = ");
+
+  if (digitalValue == HIGH) {
+    Serial.println("Magnet detected");
+  } else {
+    Serial.println("No magnet");
+  }
+
+  delay(300);
+}</code></pre>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>ผลลัพธ์ที่คาดว่าจะเห็นใน Serial Monitor</h2>
+        <div class="code-block">
+          <pre><code>KY-025 Sensor Test
+Move a magnet near the sensor.
+Digital = 0 | Analog = 1023 | Status = No magnet
+Digital = 0 | Analog = 1022 | Status = No magnet
+Digital = 1 | Analog = 24 | Status = Magnet detected
+Digital = 1 | Analog = 23 | Status = Magnet detected
+Digital = 0 | Analog = 1023 | Status = No magnet</code></pre>
+        </div>
+        <div class="note">
+          ค่าจริงอาจต่างจากตัวอย่างเล็กน้อย ขึ้นอยู่กับรุ่นของโมดูล ระยะห่าง และความแรงของแม่เหล็ก
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>ตารางบันทึกผลการทดลอง</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ครั้งที่</th>
+                <th>สถานะการทดสอบ</th>
+                <th>Digital Value</th>
+                <th>Analog Value</th>
+                <th>ผลที่สังเกตได้</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>ไม่มีแม่เหล็กใกล้ Sensor</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>นำแม่เหล็กเข้าใกล้ Sensor</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>นำแม่เหล็กออกห่าง Sensor</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>ปรับ Potentiometer แล้วทดสอบใหม่</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>สรุป</h2>
+        <p class="lead">
+          การทดสอบ KY-025 ด้วย Serial Monitor ทำให้เห็นการเปลี่ยนแปลงของ Sensor ได้ชัดเจน
+          ทั้งค่า Digital สำหรับตรวจจับสถานะพบ/ไม่พบแม่เหล็ก และค่า Analog สำหรับดูระดับแรงดันจากโมดูล
+          ขั้นตอนนี้เหมาะสำหรับตรวจสอบ Sensor ก่อนนำไปใช้ในระบบแจ้งเตือนประตู หน้าต่าง
+          หรือระบบตรวจจับตำแหน่งแบบไม่สัมผัส
+        </p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      จัดทำโดย นาย ทีรธร กาญจนวิวิญ | แผนกวิชาช่างเทคนิคคอมพิวเตอร์ | ระดับ ปวช
+    </footer>
+  </div>
+</body>
+</html>
