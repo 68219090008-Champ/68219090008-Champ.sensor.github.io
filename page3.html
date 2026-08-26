@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>หน้า 3 - Industrial Sensors Course Website</title>
+  <style>
+    :root {
+      --bg: #f3f7ff;
+      --panel: #ffffff;
+      --primary: #123d8c;
+      --secondary: #3b82f6;
+      --accent: #dfeeff;
+      --soft: #f8fbff;
+      --text: #1f2937;
+      --muted: #5f6b7a;
+      --border: #dfeaf7;
+      --success: #1ea56e;
+      --shadow: 0 18px 36px rgba(13, 56, 128, 0.09);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background: linear-gradient(180deg, #eef5ff 0%, #f9fbff 100%);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .page {
+      width: min(1100px, calc(100% - 32px));
+      margin: 28px auto 40px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .topbar {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff;
+      padding: 18px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .topbar h1 {
+      margin: 0;
+      font-size: clamp(1.4rem, 2vw, 2.1rem);
+    }
+
+    .nav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: #fff;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-weight: 600;
+    }
+
+    .container {
+      padding: 34px 28px 22px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #f8fbff, #ebf3ff);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px 24px;
+      margin-bottom: 28px;
+    }
+
+    .hero h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      color: var(--primary);
+    }
+
+    .hero p {
+      margin: 0;
+      font-size: 1.05rem;
+      color: var(--muted);
+    }
+
+    .section {
+      margin-bottom: 28px;
+    }
+
+    .section h3 {
+      margin: 0 0 14px;
+      font-size: clamp(1.3rem, 2vw, 1.8rem);
+      color: var(--primary);
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 8px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--soft);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px 18px;
+    }
+
+    .card h4 {
+      margin: 0 0 10px;
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+
+    .card ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .card li + li {
+      margin-top: 8px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .feature-box {
+      background: linear-gradient(180deg, #ffffff 0%, #f3f9ff 100%);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px 18px;
+    }
+
+    .feature-box strong {
+      display: block;
+      color: var(--primary);
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(30, 165, 110, 0.12);
+      color: var(--success);
+      border: 1px solid rgba(30, 165, 110, 0.2);
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-top: 12px;
+    }
+
+    .footer {
+      background: #f3f8ff;
+      border-top: 1px solid var(--border);
+      padding: 22px 28px 30px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    @media (max-width: 760px) {
+      .grid,
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .container,
+      .footer {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <h1>Industrial Sensors Course Website</h1>
+      <div class="nav">
+        <a href="index.html">หน้าแรก</a>
+        <a href="page2.html">หน้า 2</a>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <h2>68219090008-Champ.sensor.github.io</h2>
+        <p>
+          เว็บไซต์นี้จัดทำขึ้นเพื่อใช้ประกอบการเรียนรู้และนำเสนอเนื้อหาเกี่ยวกับเซ็นเซอร์อุตสาหกรรม
+          โดยเน้นการเรียนรู้พื้นฐาน การทดสอบและการใช้งานของ KY-025 Magnetic Reed Switch Sensor
+        </p>
+      </section>
+
+      <section class="section">
+        <h3>เนื้อหาและประเด็นหลัก</h3>
+        <div class="grid">
+          <div class="card">
+            <h4>พื้นฐานเซ็นเซอร์</h4>
+            <ul>
+              <li>ความหมายของ Sensor</li>
+              <li>หน้าที่และการทำงาน</li>
+              <li>การแปลงสัญญาณไฟฟ้า</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h4>ประเภทสัญญาณ</h4>
+            <ul>
+              <li>Digital Sensor</li>
+              <li>Analog Sensor</li>
+              <li>การอ่านค่าใน Arduino</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h4>การใช้งานจริง</h4>
+            <ul>
+              <li>KY-025</li>
+              <li>Arduino UNO</li>
+              <li>การทดสอบและบันทึกผล</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h3>คุณลักษณะของเว็บไซต์</h3>
+        <div class="features">
+          <div class="feature-box">
+            <strong>1. เน้นความง่าย</strong>
+            เว็บไซต์ออกแบบให้เข้าใจง่าย เหมาะสำหรับนักศึกษาที่เริ่มเรียนรู้เรื่อง Sensor และ Arduino
+          </div>
+
+          <div class="feature-box">
+            <strong>2. ใช้งานได้จริง</strong>
+            มีการสรุปข้อมูลและแสดงตัวอย่างการทดสอบที่สามารถนำไปปฏิบัติได้ทันที
+          </div>
+
+          <div class="feature-box">
+            <strong>3. เป็นฐานสำหรับงานนำเสนอ</strong>
+            เหมาะสำหรับการใช้เป็นหน้าเว็บสรุปผลงานหรือแสดงข้อมูลในชั้นเรียน
+          </div>
+
+          <div class="feature-box">
+            <strong>4. รองรับการขยายต่อ</strong>
+            สามารถเพิ่มเนื้อหาใหม่ เช่น ผลการทดลอง รูปภาพ หรือหัวข้อเพิ่มเติมได้ง่าย
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h3>ภาพรวมโครงการ</h3>
+        <div class="card">
+          <p>
+            เว็บไซต์นี้เป็นโครงการที่เน้นการเรียนรู้เรื่องเซ็นเซอร์อุตสาหกรรมเบื้องต้น และใช้ KY-025
+            Magnetic Reed Switch Sensor เป็นตัวอย่างหลักในการศึกษาเกี่ยวกับการตรวจจับสนามแม่เหล็ก
+            การเชื่อมต่อกับไมโครคอนโทรลเลอร์ และการแสดงผลผ่าน Serial Monitor
+          </p>
+          <span class="badge">สถานะ: โครงการกำลังพัฒนาและต่อยอด</span>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      จัดทำโดย นาย ทีรธร กาญจนวิวิญ | Industrial Sensors Course Website
+    </footer>
+  </div>
+</body>
+</html>
